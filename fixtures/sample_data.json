@@ -1,0 +1,189 @@
+[
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "username": "student_alex",
+      "password": "example",
+      "email": "anna@student.com",
+      "role": "student",
+      "is_active": true
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+      "username": "student_kevin",
+      "password": "example",
+      "email": "bob@student.com",
+      "role": "student",
+      "is_active": true
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+      "username": "mosh_instructor",
+      "password": "example",
+      "email": "mosh@instructor.com",
+      "role": "instructor",
+      "is_active": true
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 4,
+    "fields": {
+      "username": "employee_admin",
+      "password": "example",
+      "email": "admin@ols.com",
+      "role": "employee",
+      "is_active": true,
+      "is_staff": true,
+      "is_superuser": true
+    }
+  },
+
+  {
+    "model": "courses.category",
+    "pk": 1,
+    "fields": { "name": "Web Development", "slug": "web-development" }
+  },
+  {
+    "model": "courses.category",
+    "pk": 2,
+    "fields": { "name": "Programming Languages", "slug": "programming-languages" }
+  },
+  {
+    "model": "courses.tag",
+    "pk": 1,
+    "fields": { "name": "Python", "slug": "python" }
+  },
+  {
+    "model": "courses.tag",
+    "pk": 2,
+    "fields": { "name": "JavaScript", "slug": "javascript" }
+  },
+
+  {
+    "model": "courses.course",
+    "pk": 1,
+    "fields": {
+      "title": "Python for Beginners",
+      "slug": "python-for-beginners",
+      "description": "Mosh’s hugely popular Python full course for beginners.",
+      "price": "19.99",
+      "published": true,
+      "category": 2,
+      "instructor": 1,
+      "created_at": "2025-03-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "courses.course",
+    "pk": 2,
+    "fields": {
+      "title": "JavaScript Course for Beginners",
+      "slug": "javascript-course-for-beginners",
+      "description": "Your first step to web development with JavaScript.",
+      "price": "19.99",
+      "published": true,
+      "category": 1,
+      "instructor": 1,
+      "created_at": "2025-03-02T00:00:00Z"
+    }
+  },
+
+  {
+    "model": "lessons.lesson",
+    "pk": 1,
+    "fields": {
+      "course": 1,
+      "title": "Intro to Python",
+      "order": 1,
+      "video_url": "",
+      "content": "An introduction to Python programming."
+    }
+  },
+  {
+    "model": "lessons.lesson",
+    "pk": 2,
+    "fields": {
+      "course": 1,
+      "title": "Python Variables & Data Types",
+      "order": 2,
+      "video_url": "",
+      "content": "Explore variables and data types in Python."
+    }
+  },
+  {
+    "model": "lessons.lesson",
+    "pk": 3,
+    "fields": {
+      "course": 2,
+      "title": "Getting Started with JavaScript",
+      "order": 1,
+      "video_url": "",
+      "content": "Intro to JS and environment setup."
+    }
+  },
+  {
+    "model": "lessons.lesson",
+    "pk": 4,
+    "fields": {
+      "course": 2,
+      "title": "JavaScript Variables & Functions",
+      "order": 2,
+      "video_url": "",
+      "content": "Basics of variables and writing functions."
+    }
+  },
+
+
+  {
+    "model": "enrollments.enrollment",
+    "pk": 1,
+    "fields": {
+      "student": 1,
+      "course": 1,
+      "started_at": "2025-03-10T00:00:00Z",
+      "completed": false
+    }
+  },
+  {
+    "model": "enrollments.enrollment",
+    "pk": 2,
+    "fields": {
+      "student": 2,
+      "course": 2,
+      "started_at": "2025-03-11T00:00:00Z",
+      "completed": false
+    }
+  },
+
+
+  {
+    "model": "reviews.review",
+    "pk": 1,
+    "fields": {
+      "course": 1,
+      "student": 1,
+      "rating": 5,
+      "comment": "Really helped me get started with Python!",
+      "created_at": "2025-03-12T00:00:00Z"
+    }
+  },
+  {
+    "model": "reviews.review",
+    "pk": 2,
+    "fields": {
+      "course": 2,
+      "student": 2,
+      "rating": 4,
+      "comment": "Great intro to JavaScript.",
+      "created_at": "2025-03-12T00:00:00Z"
+    }
+  }
+]

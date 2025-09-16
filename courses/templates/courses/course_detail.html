@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ course.title }}{% endblock %}
+{% block content %}
+
+<!-- Banner -->
+<div class="course-banner">
+  {% if course.slug == "javascript-course-for-beginners" %}
+    <img src="{% static 'img/js.jpg' %}" alt="JavaScript">
+  {% elif course.slug == "python-for-beginners" %}
+    <img src="{% static 'img/python.jpg' %}" alt="Python">
+  {% elif course.image %}
+    <img src="{{ course.image.url }}" alt="{{ course.title }}">
+  {% else %}
+    <img src="{% static 'img/default-course.png' %}" alt="No image">
+  {% endif %}
+
+  <div class="overlay">
+    <h1>{{ course.title }}</h1>
+    <p class="subtitle">{{ course.description|truncatechars:120 }}</p>
+    <div class="meta">
+      <span>Instructor: {{ course.instructor.user.username }}</span> •
+      <span>Price: ${{ course.price }}</span>
+    </div>
+    {% if user.is_authenticated and user.is_student %}
+      <a href="{% url 'enroll-course' course.slug %}" class="enroll-btn-lg">Enroll Now</a>
+    {% endif %}
+  </div>
+</div>
+
+<!-- Course Details -->
+<div class="course-detail container">
+  <h2>About this course</h2>
+  <p>{{ course.description }}</p>
+
+  <h2>Lessons</h2>
+  <div class="lessons-list">
+    {% for lesson in course.lessons.all %}
+      <div class="lesson-card">
+        <h3>{{ lesson.title }}</h3>
+        {% if lesson.video_url %}
+          <p>🎬 Video: <a href="{{ lesson.video_url }}" target="_blank">Watch</a></p>
+        {% endif %}
+        {% if lesson.document %}
+          <p>📄 PDF: <a href="{{ lesson.document.url }}" target="_blank">Download</a></p>
+        {% endif %}
+        <p>{{ lesson.content|truncatechars:150 }}</p>
+      </div>
+    {% empty %}
+      <p>No lessons added yet.</p>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

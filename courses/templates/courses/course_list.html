@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Courses{% endblock %}
+{% block content %}
+
+<h2 class="page-title">Build Real-World Skills</h2>
+<p class="subtitle">Master software development with structured courses designed to make you job-ready.</p>
+
+<!-- Search bar -->
+<form method="get" class="search-bar">
+  <input type="text" name="q" placeholder="Search..." value="{{ request.GET.q }}">
+  <button type="submit">Search</button>
+</form>
+
+<!-- Course grid -->
+<div class="course-grid">
+  {% for c in courses %}
+    <div class="course-card">
+      <div class="thumb">
+        {% if c.image %}
+          <img src="{{ c.image.url }}" alt="{{ c.title }}">
+        {% else %}
+          <img src="{% static 'img/default-course.png' %}" alt="No image available">
+        {% endif %}
+      </div>
+      <div class="info">
+        <h3 class="title">
+          <a href="{{ c.get_absolute_url }}">{{ c.title }}</a>
+        </h3>
+        <p class="desc">{{ c.description|truncatechars:80 }}</p>
+        <div class="meta">
+          <span class="instructor">{{ c.instructor.user.username }}</span>
+          <span class="price">${{ c.price }}</span>
+        </div>
+      </div>
+      {% if user.is_authenticated and user.is_student %}
+        <a href="{% url 'enroll-course' c.slug %}" class="enroll-btn">Enroll</a>
+      {% endif %}
+    </div>
+  {% empty %}
+    <p>No courses yet. Check back soon!</p>
+  {% endfor %}
+</div>
+
+{% endblock %}
